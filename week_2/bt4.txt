@@ -1,0 +1,49 @@
+Bubble sort:
+n = 10:
+	Tệ nhất:3.253 * 10^-3
+	Tốt nhất: 1.421 * 10^-3
+	Trung bình: 2.2295 * 10^-3
+n = 50:
+	Tệ nhất:1.717 * 10^-3
+	Tốt nhất:0.841 * 10^-3
+	Trung bình:1.279* 10^-3
+n = 100:
+	Tệ nhất:3.949 * 10^-3
+	Tốt nhất:1.020 * 10^-3
+	Trung bình:2.4845 * 10^-3
+Selection Sort:
+n = 10
+	Tệ nhất:3.067 * 10^-3
+	Tốt nhất:0.845 * 10^-3
+	Trung bình:1.956 * 10^-3
+n = 50
+	Tệ nhất:1.101 * 10^-3
+	Tốt nhất:1.235 *10^-3
+	Trung bình:1.168 * 10^-3
+n =  100
+	Tệ nhất: 1.671 * 10^-3
+	Tốt nhất: 0.754 * 10^-3
+	Trung bình:1.2125 * 10^-3
+Insertion Sort:
+n = 10
+	Tệ nhất:5.316 * 10^-3
+	Tốt nhất:1.040 * 10^-3
+	Trung bình:3.378 * 10^-3
+n = 50
+	Tệ nhất:0.1057 * 10^-3
+	Tốt nhất:0.0638 * 10^-3
+	Trung bình:0.8475*10^-3
+n = 100
+	Tệ nhất:1.329 * 10^-3
+	Tốt nhất:0.853 * 10^-3
+	Trung bình:1.091 * 10^-3
+
+Với n = 10:
+	- Selection sort có thời gian chạy trung bình nhanh nhất với 1.956 * 10^-3 (ms)
+	- Insertion sort có thời gian chạy trung bình tệ nhất với 3.378 * 10^-3 (ms)
+Với n = 50:
+	- Insertion sort có thời gian chạy trung bình nhanh nhất với 0.8475 * 10^-3 (ms)
+	- Bubble sort có thời gian chạy trung bình nhanh tệ nhất với 1.279* 10^-3 (ms)
+Với n = 100:
+	- Insertion sort có thời gian chạy trung bình nhanh nhất với 1.091 * 10^-3 (ms)
+	- Bubble sort có thời gian chạy trung bình nhanh tệ nhất với 2.4845 * 10^-3 (ms)
