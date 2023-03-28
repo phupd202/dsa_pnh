@@ -89,6 +89,10 @@ public class LinkedListStack<E> implements StackInterface<E> {
     public static void main(String[] args) {
         LinkedListStack<Integer> stack = new LinkedListStack<Integer>();
 
+        stack.push(1);
+        System.out.println(stack.pop());
+        System.out.println(stack.isEmpty());
+
         for (int i = 0; i < 10; i++) {
             stack.push(i);
         }

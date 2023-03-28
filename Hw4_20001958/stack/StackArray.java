@@ -104,6 +104,5 @@ public class StackArray<T> implements StackInterface<T>{
         // test size after pop()
         System.out.println("\nSize after pop: " + stack.size());
    }
-
    // tested
 }
