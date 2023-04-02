@@ -19,17 +19,17 @@ public class InversionCount {
         for (int i = 0; i < n2; i++)
             rArray[i] = array[m + 1 + i];
 
-        // Add the number of inversions in each half
+        // Add the number of inversions in each array
         long inversions = solve(lArray, n1) + solve(rArray, n2);
 
-        // Merge and cal num inversion
+        // Merge
         int i = 0, j = 0, k = 0;
         while (i < n1 && j < n2) {
             if (lArray[i] <= rArray[j]) {
                 array[k++] = lArray[i++];
             } else {
                 array[k++] = rArray[j++];
-                inversions += n1 - i; // found more inversions
+                inversions += n1 - i; // cal số cặp inversion
             }
         }
         while (i < n1)

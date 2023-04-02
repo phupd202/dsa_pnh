@@ -1,43 +1,31 @@
-import java.util.*;
-import java.lang.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class EasyQueue {
-    public static void main(String[] args) throws java.lang.Exception{
 
-        Scanner sc = new Scanner(System.in);
-        int t = Integer.parseInt(sc.nextLine());
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine());
 
-        // input
+        //cài queue = mảng
         int[] queue = new int[t];
         int front = 0;
         int rear = -1;
 
-        String[] result = new String[100000];
-        int count = 0;
-
         for (int i = 0; i < t; i++) {
-            String s[] = sc.nextLine().split(" ");
-
-            if (s[0].equals("1")) {
-                queue[++rear] = Integer.parseInt(s[1]);
-            } else if (s[0].equals("2")) {
+            String s = br.readLine();
+            if (s.charAt(0) == '1') {
+                queue[++rear] = Integer.parseInt(s.substring(2));
+            } else if (s.equals("2")) {
                 if (front <= rear) {
                     front++;
                 }
-            } else if (s[0].equals("3")) {
-                if (front > rear) {
-                    result[count++] = "Empty!";
-                } else {
-                    result[count++] = String.valueOf(queue[front]);
-                }
-            }            
+            } else if (s.equals("3")) {
+                if(front > rear) System.out.println("Empty!\n");
+                else System.out.println(queue[front] + "\n");
+            }
         }
-
-        // in kết quả
-        for (int i = 0; i < count; i++) {
-            System.out.println(result[i]);
-            
-        }
-
     }
 }
