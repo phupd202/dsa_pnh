@@ -1,4 +1,4 @@
-package spoj;
+
 
 import java.util.Scanner;
 
