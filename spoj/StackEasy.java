@@ -8,6 +8,7 @@ import java.util.Scanner;
  * BufferedOutputStream giúp tránh tình trạng tràn bộ đệm (buffer overflow) do việc ghi dữ liệu quá nhanh
  * Sử dụng phương thức write(byte[] b) để ghi dữ liệu kiểu byte vào đối tượng BufferedOutputStream. 
  * Sử dụng getbyte() để lấy kiểu byte của String
+ * Sử dụng BufferedOutputStream sẽ nhanh hơn.
  */
 
  public class StackEasy {
