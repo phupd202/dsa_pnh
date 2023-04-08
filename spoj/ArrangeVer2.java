@@ -1,36 +1,47 @@
+/*
+ * Ý tưởng: 
+ * Sắp xếp dãy tăng dần
+ * Nếu input = 1, 1 phải đứng đầu tiên ở output
+ * Đối với trường hợp số 2 và 3 liên tiếp nhau, viết hàm comp định nghĩa số 2 > số 3, để việc sắp xếp dễ dàng hơn
+ * Output: Kết quả đúng, but chưa sub được
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class ArrangeVer2 {
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(reader.readLine()); // số lượng test case
-        StringBuilder sb = new StringBuilder();
-
+        
         for (int i = 0; i < t; i++) {
             int n = Integer.parseInt(reader.readLine());
+            StringBuilder sb = new StringBuilder();
             long[] a = new long[n];
-
             String[] line = reader.readLine().split(" ");
-        }
-    }
+            int count = 0;
 
-    // đã hoàn thành sắp xếp:
-    public static int comp(long a, long b) {
-        if (a == 2 && b == 3) {
-            return 1; // tức định nghĩa 2 lớn 3
-        } else if (a == 3 && b == 2) {
-            return -1; // tức định nghĩa 3 nhỏ hơn 2
-        } else {
-            if (a > b)
-                return 1;
-            else if (a < b)
-                return -1;
-            else
-                return 0;
+            for (int j = 0; j < n; j++) {
+                long num = Long.parseLong(line[j]);
+
+
+                // nếu bằng 1 cho vào kết quả, nếu không thì cho vào 1 mảng và sắp xếp mảng đó
+                if(num == 1) {
+                    sb.append("1 ");
+                } else {
+                    a[count++] = num;
+                }
+            }
+            mergeSort(a, 0, count - 1);
+
+            // nối các phần tử trong mảng với sb, để có dạng 1 + dãy số tăng dần
+            for (int j = 0; j < count; j++) {
+                sb.append(a[j]).append(" ");
+            }
+
+            System.out.println(sb);
+
         }
 
     }
@@ -57,7 +68,7 @@ public class ArrangeVer2 {
 
         // merge
         while (i < n1 && j < n2) {
-            if (comp(lArray[i],rArray[j]) > 0) {
+            if (lArray[i] >= rArray[j]) {
                 arr[k++] = lArray[i++];
             } else {
                 arr[k++] = rArray[j++];
@@ -85,6 +96,5 @@ public class ArrangeVer2 {
         }
 
     }
-
 
 }

@@ -22,7 +22,7 @@ public class ArrayQueue<E> implements QueueInterface<E> {
 
     @Override
     public void enqueue(E element) {
-        if(count == queue.length) {
+        if(count >= queue.length) {
             throw new IllegalStateException("Queue đã đầy!!");
         }
         int avail = (top + count) % queue.length;
@@ -39,7 +39,7 @@ public class ArrayQueue<E> implements QueueInterface<E> {
         
         E topQueue = queue[top];
         queue[top] = null;
-        top = (top + 1) % queue.length;
+        top = (top + 1) % queue.length; // phòng trương hợp khi hết mảng
         return topQueue;
     }
 
@@ -57,13 +57,14 @@ public class ArrayQueue<E> implements QueueInterface<E> {
 
     class ArrayQueueIterator implements Iterator<E> {
         private int current = top;
-        private int num = 0;
+        private int num = 0; // con trỏ duyệt 
 
         @Override
         public boolean hasNext() {
             return num < count;
         }
 
+        // mỗi lần lấy ra một phần tử, num++
         @Override
         public E next() {
             E data = queue[(current + num) % n];

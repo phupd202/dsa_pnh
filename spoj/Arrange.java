@@ -31,7 +31,8 @@ public class Arrange {
                     sb.append("1 ");
                 }
             }
-            Arrays.sort(a);
+            mergeSort(a, 0, n - 1);
+            // nếu số 2 và 3 liên tiếp nhau, output = số 2 rồi đên số 3
             if (n >= 2 && a[n - 1] == 3 && a[n - 2] == 2) {
                 sb.append("2 3 ");
                 for (int j = n - 3; j >= 0; j--) {
@@ -51,4 +52,56 @@ public class Arrange {
             System.out.println(sb);
         }
     }
+
+    // merge 2 array
+    public static void merge(long[] arr, int l, int m, int r) {
+        int n1 = m - l + 1;
+        int n2 = r - m;
+
+        // copy to 2 subarray
+        long[] lArray = new long[n1];
+        long[] rArray = new long[n2];
+
+        for (int i = 0; i < n1; ++i) {
+            lArray[i] = arr[l + i];
+        }
+
+        for (int j = 0; j < n2; ++j) {
+            rArray[j] = arr[m + 1 + j];
+        }
+
+        int i = 0, j = 0;
+        int k = l;
+
+        // merge
+        while (i < n1 && j < n2) {
+            if (lArray[i] <= rArray[j]) {
+                arr[k++] = lArray[i++];
+            } else {
+                arr[k++] = rArray[j++];
+            }
+        }
+
+        // khi không còn các cặp để so sánh, copy các phần tử còn lại
+        while (i < n1) {
+            arr[k++] = lArray[i++];
+        }
+
+        while (j < n2) {
+            arr[k++] = rArray[j++];
+        }
+    }
+
+    // sort
+    public static void mergeSort(long[] array, int l, int r) {
+        int m = l + (r - l) / 2;
+        if (l < r) {
+            // mergesort
+            mergeSort(array, l, m);
+            mergeSort(array, m + 1, r);
+            merge(array, l, m, r);
+        }
+
+    }
+
 }

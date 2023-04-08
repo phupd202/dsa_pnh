@@ -25,13 +25,14 @@ public class InserttionSort {
         int countCompare = 0;
         int countSwap = 0;
 
+        // đơn giản
         for (int i = 0; i < array.length; i++) {
             int key = array[i];
             int j = i - 1;
 
             while(j > 0 && array[j] > key) {
                 countCompare++;
-                array[j + 1] = array[j]; // mỗi lần dịch chuyển coi như là 1 lần hoán vị
+                array[j + 1] = array[j]; // dịch về phía sau
                 j--;
 
             }

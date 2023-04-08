@@ -1,121 +1,92 @@
 package Hw4_20001958.stack;
 
+import java.util.Stack;
+
 public class MatchBracket {
+    public static int evaluate(String expression) {
+        LinkedListStack<Character> opStack = new LinkedListStack<>();
+        LinkedListStack<Integer> valStack = new LinkedListStack<>();
 
-    // Kiểm tra tính hợp lệ của biểu thức ngoặc đơn
-    public static boolean checkMatch(String s) {
-        LinkedListStack<Character> stack = new LinkedListStack<Character>();
-        int n = s.length();
+        for (int i = 0; i < expression.length(); i++) {
+            char c = expression.charAt(i);
 
-        for (int i = 0; i < n; i++) {
-            char ch = s.charAt(i);
-            if (ch == '(') {
-                stack.push(ch);
-            } else if (ch == ')' && (!stack.isEmpty())) {
-                stack.pop();
-            }
-        }
+            if (Character.isDigit(c)) {
+                int num = 0;
 
-        return stack.isEmpty();
-    }
-
-    // infix to postfix
-    public static String infixtoPosFix(String s) {
-        LinkedListStack<Character> stack = new LinkedListStack<Character>();
-        String posfix = "";
-        int n = s.length();
-    
-        for (int i = 0; i < n; i++) {
-            char c = s.charAt(i);
-            if (Character.isLetterOrDigit(c)) {
-
-                // xử lý toán hạng được nối liền nhau, chăng hạn 50 là 50 chứ ko phải 5 và 0
-                if (i > 0 && Character.isDigit(s.charAt(i-1))) {
-                    posfix += c;
-                } else {
-                    posfix += " " + c;
+                while (i < expression.length() && Character.isDigit(expression.charAt(i))) {
+                    num = num * 10 + (expression.charAt(i) - '0');
+                    i++;
                 }
 
+                i--;
+                valStack.push(num);
             } else if (c == '(') {
-                stack.push(c);
+                opStack.push(c);
             } else if (c == ')') {
-                while (!stack.isEmpty() && stack.top() != '(') {
-                    posfix += " " + stack.pop();
+                while (!opStack.isEmpty() && opStack.top() != '(') {
+                    char op = opStack.pop();
+                    int val2 = valStack.pop();
+                    int val1 = valStack.pop();
+                    int result = evaluateOperation(op, val1, val2);
+                    valStack.push(result);
                 }
-                if (!stack.isEmpty() && stack.top() == '(') {
-                    stack.pop();
+
+                if (!opStack.isEmpty() && opStack.top() == '(') {
+                    opStack.pop();
                 }
-            } else {
-                while (!stack.isEmpty() && getPriority(c) <= getPriority(stack.top())) {
-                    posfix += " " + stack.pop();
+            } else if (isOperator(c)) {
+                while (!opStack.isEmpty() && precedence(c) <= precedence(opStack.top())) {
+                    char op = opStack.pop();
+                    int val2 = valStack.pop();
+                    int val1 = valStack.pop();
+                    int result = evaluateOperation(op, val1, val2);
+                    valStack.push(result);
                 }
-                stack.push(c);
+
+                opStack.push(c);
             }
         }
-    
-        while (!stack.isEmpty()) {
-            posfix += " " + stack.pop();
-        }
-    
-        return posfix.trim();
-    }
-    
 
-    // get priority
-    public static int getPriority(char op) {
-        if (op == '*' || op == '/')
+        while (!opStack.isEmpty()) {
+            char op = opStack.pop();
+            int val2 = valStack.pop();
+            int val1 = valStack.pop();
+            int result = evaluateOperation(op, val1, val2);
+            valStack.push(result);
+        }
+
+        return valStack.pop();
+    }
+
+    private static boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
+    }
+
+    private static int precedence(char op) {
+        if (op == '*' || op == '/') {
             return 2;
-        if (op == '+' || op == '-')
+        } else if (op == '+' || op == '-') {
             return 1;
-        return 0;
-    }
-
-    public static double calValue(String s) throws Exception {
-        LinkedListStack<Double> stack = new LinkedListStack<>();
-    
-        // check invalid
-        if (!checkMatch(s)) throw new Exception("Invalid expression");
-    
-        // convert infix to postfix
-        String posfix[] = infixtoPosFix(s).split(" ");
-    
-        // tính giá trị của biêu thức hậu thứ tự
-        int n = posfix.length;
-        for (int i = 0; i < n; i++) {
-            String c = posfix[i];
-            if (c.equals("+")) {
-                double num1 = stack.pop();
-                double num2 = stack.pop();
-                stack.push(num1 + num2);
-            } else if (c.equals("-")) {
-                double num1 = stack.pop();
-                double num2 = stack.pop();
-                stack.push(num2 - num1);
-            } else if (c.equals("*")) {
-                double num1 = stack.pop();
-                double num2 = stack.pop();
-                stack.push(num1 * num2);
-            } else if (c.equals("/")) {
-                double num1 = stack.pop();
-                double num2 = stack.pop();
-                stack.push(num2 / num1);
-            } else {
-                stack.push(Double.parseDouble(c));
-            }
+        } else {
+            return 0;
         }
-        return stack.pop();
-    }
-    
-
-    public static void main(String[] args) throws Exception {
-        // Biểu thức đầu vào không được chứa dấu cách, chỉ gồm các toán tử
-        String s1 = "(1+(2+1)*(2*3))+(1+2)";  // = 22
-        String s2 = "((50-((8-4)*(2+3)))+(3*4))"; // -3
-        String s3 = "(1+((2+3)*(4*5)))";
-        System.out.println(infixtoPosFix(s2));
-        System.out.println("Giá trị của biểu thức (1+(2+1)*(2*3))+(1+2)) là: " + calValue(s1)); //đúng
-        System.out.println("Giá trị của biểu thức ((50-((8-4)*(2+3)))+(3*4)) là: " + calValue(s2)); // đúng
-        System.out.println("Giá trị của biểu thức  là: (1+((2+3)*(4*5)))" + calValue(s3)); // đúng
     }
 
+    private static int evaluateOperation(char op, int val1, int val2) {
+        if (op == '+') {
+            return val1 + val2;
+        } else if (op == '-') {
+            return val1 - val2;
+        } else if (op == '*') {
+            return val1 * val2;
+        } else {
+            return val1 / val2;
+        }
+    }
+
+    public static void main(String[] args) {
+        String expression = "( ( 2 + 3 ) * ( 5 - 2 ) ) / 3";
+        int result = evaluate(expression);
+        System.out.println("Result of " + expression + " is " + result);
+    }
 }
