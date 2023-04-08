@@ -109,7 +109,6 @@ public class LinkedListStack<E> implements StackInterface<E> {
         
         System.out.println(stack.pop());
         System.out.println(stack.pop());
-        System.out.println(stack.n);
     }
 }
 // tested
