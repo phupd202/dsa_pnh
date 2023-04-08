@@ -38,5 +38,5 @@ public class WordCount {
         return "[word: " + word + ", count: " + count + "]";
     }
 
-
+//tested
 }
