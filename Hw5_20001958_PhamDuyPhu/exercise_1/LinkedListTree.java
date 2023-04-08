@@ -40,7 +40,6 @@ public class LinkedListTree<E> {
         public void setElement(E element) {
             this.element = element;
         }
-
     }
 
     // update methods
