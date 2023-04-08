@@ -12,7 +12,7 @@ public class ExpressionTree<E> extends LinkedListTree<E> {
             return;
         }
 
-        System.out.println(p.getElement() + " ");
+        System.out.print(p.getElement() + " ");
         preorderPrint(p.getLeft());
         preorderPrint(p.getRight());
     }
@@ -25,7 +25,7 @@ public class ExpressionTree<E> extends LinkedListTree<E> {
 
         postorderPrint(p.getLeft());
         postorderPrint(p.getRight());
-        System.out.println(p.getElement() + " ");
+        System.out.print(p.getElement() + " ");
 
     }
 
@@ -36,7 +36,7 @@ public class ExpressionTree<E> extends LinkedListTree<E> {
         }
 
         inorderPrint(p.getLeft());
-        System.out.println(p.getElement());
+        System.out.print(p.getElement() + " ");
         inorderPrint(p.getRight());
 
     }

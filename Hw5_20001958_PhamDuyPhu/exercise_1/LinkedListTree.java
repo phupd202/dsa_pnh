@@ -45,9 +45,9 @@ public class LinkedListTree<E> {
 
     // update methods
     public Node<E> addRoot(E element) {
-        // if (n > 0) {
-        //     throw new IllegalStateException("Cây đã có nút gốc");
-        // }
+        if (n > 0) {
+            throw new IllegalStateException("Cây đã có nút gốc");
+        }
         Node<E> root = new Node<E>(element, null, null, null);
         n++;
         return root;

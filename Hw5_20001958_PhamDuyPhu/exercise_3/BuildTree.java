@@ -16,7 +16,11 @@ public class BuildTree {
 
         for (int i = 0; i < n; i++) {
             char c = s.charAt(i);
-            if (Character.isLetterOrDigit(c)) {
+
+            if (Character.isSpaceChar(c)) {
+                // Nếu kí tự là space, bỏ qua
+                // do nothing
+            } else if (Character.isLetterOrDigit(c)) {
 
                 // xử lý toán hạng được nối liền nhau, chăng hạn 50 là 50 chứ ko phải 5 và 0
                 if (i > 0 && Character.isDigit(s.charAt(i - 1))) {
@@ -40,6 +44,7 @@ public class BuildTree {
                 }
                 stack.push(c);
             }
+
         }
 
         while (!stack.isEmpty()) {
@@ -60,9 +65,9 @@ public class BuildTree {
 
     // buil cây biểu thức từ biểu thức hậu tố
     public static Node<Character> buildExpressionTree(String postfix) {
-        LinkedListTree<Character> tree = new LinkedListTree<>();
+
         Stack<Node<Character>> stack = new Stack<>();
-    
+
         for (int i = 0; i < postfix.length(); i++) {
             char ch = postfix.charAt(i);
             Node<Character> root = new Node<Character>(ch, null, null, null);
@@ -72,23 +77,24 @@ public class BuildTree {
             } else if (isOperator(ch)) {
                 Node<Character> rightNode = stack.pop();
                 root.setRight(rightNode);
-                
+
                 Node<Character> leftNode = stack.pop();
                 root.setLeft(leftNode);
-                
+
                 stack.push(root);
             } else {
-                continue;
+                // Nếu gặp space, bỏ qua
+                // do nothing
 
             }
         }
-    
+
         return stack.pop();
     }
 
     // check oparator
     public static boolean isOperator(char c) {
-        if(c == '+' || c == '-' || c == '/' || c == '*') {
+        if (c == '+' || c == '-' || c == '/' || c == '*') {
             return true;
         }
         return false;
@@ -107,7 +113,7 @@ public class BuildTree {
     }
 
     public static void main(String[] args) {
-        String s = "(1+2)*3-4";
+        String s = "( 1 + 2 ) * 3 - 4";
         System.out.println("Biều diễn hậu tố của chuỗi là: ");
 
         // chuyển sang hậu tố
@@ -117,10 +123,10 @@ public class BuildTree {
         // Buil cây biểu thức từ xâu hậu tố
         Node<Character> expTree = buildExpressionTree(posStr);
 
-        //In ra cây hậu tố
+        // In ra cây hậu tố
         System.out.println("Duyệt cây biểu thức trung thứ tự: ");
         inorderPrint(expTree);
-        
+
     }
 
 }
