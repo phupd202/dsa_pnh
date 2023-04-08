@@ -1,5 +1,4 @@
 package hw3_20001958.exercise_5;
-import hw3_20001958.exercise_3.SimpleArrayList;
 import hw3_20001958.exercise_4.SimpleLinkedList;
 
 public class WordCount {
