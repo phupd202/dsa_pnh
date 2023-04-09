@@ -8,7 +8,7 @@ public class CalValue {
         // biểu thức (1 + 2) * 3
         ExpressionTree<Character> tree = new ExpressionTree<Character>();
 
-        System.out.println("Biếu thức biêu diễn trên cây là: (1 + 2) * 3");
+        System.out.println("Duyệt cây biểu thức:  ");
         Node<Character> root = tree.addRoot('*');
 
         Node<Character> lNode1 = tree.addLeft(root, '+');
@@ -27,12 +27,12 @@ public class CalValue {
         tree.inorderPrint(root);
 
         // chuyển sang dạng hậu thứ tự
-        System.out.println("Hâu thứ tự: ");
+        System.out.println("Biểu diễn hâu thứ tự: ");
         tree.postorderPrint(root);
 
         // Tính giá trị của cây biểu thức cho trước
         System.out.println("Giá trị của biếu thức trên là: ");
-        System.out.println(calValue(root));
+        System.out.print(calValue(root));
     }
     
 
