@@ -1,8 +1,8 @@
-package Hw4_20001958.queue;
+package Hw4_20001958_PhamDuyPhu.queue;
 
 import java.util.Scanner;
 
-import Hw4_20001958.stack.LinkedListStack;
+import Hw4_20001958_PhamDuyPhu.stack.LinkedListStack;
 
 public class Palinedrome {
     public static boolean checkPalinedrome(String s) {

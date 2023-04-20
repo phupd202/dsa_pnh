@@ -1,4 +1,4 @@
-package Hw4_20001958.queue;
+package Hw4_20001958_PhamDuyPhu.queue;
 
 public interface QueueInterface<E> extends Iterable<E> {
     public void enqueue(E element);

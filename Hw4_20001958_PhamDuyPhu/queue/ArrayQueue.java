@@ -1,4 +1,4 @@
-package Hw4_20001958.queue;
+package Hw4_20001958_PhamDuyPhu.queue;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -39,7 +39,7 @@ public class ArrayQueue<E> implements QueueInterface<E> {
         
         E topQueue = queue[top];
         queue[top] = null;
-        top = (top + 1) % queue.length; // phòng trương hợp khi hết mảng
+        top = (top + 1) % queue.length; // trương hợp khi hết mảng
         return topQueue;
     }
 

@@ -8,13 +8,16 @@ public class TestHeap {
         MinHeapPriorityQueue<Integer, String> priHeap = new MinHeapPriorityQueue<Integer, String>();
         ArrEntry<Integer, String> entry1 = new ArrEntry<Integer,String>(3, "Phú");
         ArrEntry<Integer, String> entry2 = new ArrEntry<Integer,String>(1, "Pham");
-        ArrEntry<Integer, String> entry3 = new ArrEntry<Integer,String>(3, "Duy");
+        ArrEntry<Integer, String> entry3 = new ArrEntry<Integer,String>(2, "Duy");
 
         priHeap.insert(entry1);
         priHeap.insert(entry2);
         priHeap.insert(entry3);
 
         System.out.println(priHeap.min());
+        System.out.println(priHeap.removeMin());
+        System.out.println(priHeap.removeMin());
+        System.out.println(priHeap.size());
 
 
     }

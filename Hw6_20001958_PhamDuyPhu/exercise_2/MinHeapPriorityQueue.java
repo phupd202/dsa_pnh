@@ -4,7 +4,7 @@ import exercise_1.SortedArrayPriorityQueue;
 
 public class MinHeapPriorityQueue<K extends Comparable<K>, E> extends SortedArrayPriorityQueue<K, E> {
     private static final int default_size = 100;
-    private ArrEntry<K, E>[] heapPQ;
+    public ArrEntry<K, E>[] heapPQ;
     private int n; // Thêm biến n
 
     public MinHeapPriorityQueue() {
@@ -28,21 +28,13 @@ public class MinHeapPriorityQueue<K extends Comparable<K>, E> extends SortedArra
         int index = n - 1;
 
         while (index > 0) {
-            // tìm min index trong số các nút lá
-            if (index % 2 == 0) {
-                if (index < n && heapPQ[index - 1].getKey().compareTo(heapPQ[index].getKey()) < 0) {
-                    index = index - 1;
-                }
+            if(heapPQ[index].getKey().compareTo(heapPQ[index/2].getKey()) < 0) {
+                // swap với nút cha
+                swap(heapPQ, index, (int) index / 2);
             } else {
-                if (index + 1 < n && heapPQ[index + 1].getKey().compareTo(heapPQ[index].getKey()) < 0) {
-                    index = index + 1;
-                }
+                break;
             }
-
-            // swap với nút cha
-            swap(heapPQ, index, (int) index / 2);
             index = (int) index / 2;
-
         }
 
     }
