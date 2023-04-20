@@ -11,4 +11,4 @@
 * MinHeapPriorityQueue.java + TestHeap.java(test cho MinHeap)
 
 **Bài 3:**
-** MinHeapSort.java + TestHeapSort.java(sắp xếp tăng dần)
+*MinHeapSort.java + TestHeapSort.java(sắp xếp tăng dần)
