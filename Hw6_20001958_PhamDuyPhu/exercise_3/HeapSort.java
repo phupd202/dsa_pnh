@@ -13,12 +13,7 @@ public class HeapSort<K extends Comparable<K>, E> extends MinHeapPriorityQueue<K
     // heapsort
     public void heapSort() {
 
-        // // Tạo heap
-        // for (int i = size() / 2 - 1; i >= 0; i--) {
-        //     downHeap(i);
-        // }
-
-        // Sắp xếp
+        // Sắp xếp tăng dần
         int lastNode = size() - 1;
         while (lastNode > 0) {
             // Đưa phần tử cuối lên đầu heap
