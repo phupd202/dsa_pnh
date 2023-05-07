@@ -65,7 +65,7 @@ public class Tree {
         int count = 0;
         int[] allElement = new int[n];
 
-        // duyet cây trung thứ tư, lấy các phần tử xếp vào mảng
+        // duyệt cây trung thứ tư, lấy các phần tử xếp vào mảng
         inOrder(root, allElement, count);
 
         // find median
@@ -119,6 +119,4 @@ public class Tree {
         // find k_smallest in array
         return allElement[n - k];
     }
-
-
 }
