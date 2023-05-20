@@ -94,32 +94,35 @@ public class BST {
     }
 
     // Tìm giá trị phần tử lớn nhất trên cây tìm kiếm nhị phân mà không vượt quá N
-    public int closestNeighbor(Node root, int N) {
+    public int clossetNeighbor(Node root, int N) {
         if (root == null) {
-            return -1; // Trả về một giá trị không hợp lệ
+            return -1;
         }
-    
-        int closest = root.data;
+
+        int max = root.data;
         Node p = root;
-    
-        while (p != null) {
-            if (p.data == N) {
-                return p.data; // Trả về giá trị N nếu đã có trong cây
-            }
-    
-            if (Math.abs(p.data - N) < Math.abs(closest - N)) {
-                closest = p.data;
-            }
-    
-            if (p.data < N) {
-                p = p.right;
-            } else {
-                p = p.left;
-            }
+
+        while(max < N && p != null) {
+            p = p.right;
+            max = p.data; // cập nhật lại giá trị cho max
         }
-    
-        return closest;
+        return max;
     }
-    
+
+    // Tìm số bé nhất trên cây tìm kiếm nhị phân mà có giá trị lơn hơn hoặc bằng một giá trị cho trước
+    public int ceilBST(Node root, int N) {
+        if(root == null) {
+            return -1; // không có 
+        }
+        
+        int min = root.data;
+        Node p = root;
+
+        while(p != null && min >= N) {
+            p = p.left;
+            min = p.data; // cập nhật lại giá trị cho min
+        }
+        return 0;
+    }
 
 }

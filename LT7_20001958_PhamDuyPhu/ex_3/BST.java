@@ -2,7 +2,7 @@ package ex_3;
 
 public class BST {
 
-    class Node {
+    public class Node {
         int data;
         Node left;
         Node right;
@@ -19,7 +19,8 @@ public class BST {
         return root;
     }
 
-    public boolean search(Node root, int key) {
+
+    public boolean search(int key, Node root) {
         if(root == null) return false;
 
         if(root.data == key) {
@@ -27,9 +28,9 @@ public class BST {
         }
 
         if(key < root.data) {
-            return search(root.left, key);
+            return search(key, root.left);
         } else {
-            return search(root.right, key);
+            return search(key, root.right);
         }
 
         // Node p = root;
@@ -70,6 +71,7 @@ public class BST {
         }
         return p.data;
     }
+    
     public Node delete(int key, Node root) {
         if(root == null) {
             return null;
@@ -110,16 +112,21 @@ public class BST {
 
     // thay đổi khoá phần tử
     public Node changeKey(int oldKey, int newKey, Node root) {
-        if(search(oldKey, root)) {
+        if(!search(oldKey, root)) {
             return root;
         }
 
+        root = delete(oldKey, root);
+        root = insert(newKey, root);
         return root;
     }
 
-    
-    
+    // Duyệt tiền thứ tự, lấy phần tử xếp vào result
+    public void preOrder(Node root, int[] result, int n) {
+        if(root == null) return;
 
-
-
+        result[n++] = root.data;
+        preOrder(root.left, result, n);
+        preOrder(root.right, result, n);
+    }
 }
